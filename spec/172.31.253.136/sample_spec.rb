@@ -84,4 +84,19 @@ describe package('Infusion Spot+ Administration') do
   it { should be_installed}
 end
 
+describe group('Administrators') do
+  it { should exist }
+end
+
+describe group('Spot Administrators') do
+  it { should exist }
+end
+
+describe group('Spot Services') do
+  it { should exist }
+end
+
+describe group('Spot View Only') do
+  it { should exist }
+end
 
