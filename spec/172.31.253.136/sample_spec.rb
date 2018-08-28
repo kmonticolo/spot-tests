@@ -69,3 +69,19 @@ describe service('tb') do
   it { should have_start_mode("Manual") }
 end
 
+
+describe package('Network Time Protocol') do
+  it { should be_installed}
+end
+
+
+describe package('Infusion Spot+ Service') do
+  it { should be_installed}
+end
+
+
+describe package('Infusion Spot+ Administration') do
+  it { should be_installed}
+end
+
+
