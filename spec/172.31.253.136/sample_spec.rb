@@ -26,3 +26,46 @@ end
 describe port(80) do
   it { should be_listening }
 end
+
+describe service('Alarmcol') do
+  it { should be_installed }
+  #it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('Alarmana') do
+  it { should be_installed }
+  #it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('dbm') do
+  it { should be_installed }
+  #it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('pager') do
+  it { should be_installed }
+  #it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('scsetup') do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+describe service('tb') do
+  it { should be_installed }
+  #it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
