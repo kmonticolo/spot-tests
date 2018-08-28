@@ -1,0 +1,5 @@
+{
+  "test_win.py::test_ntp_conf[paramiko://172.31.253.136]": true, 
+  "test_win.py::test_ntp_conf[winrm://127.0.0.1]": true, 
+  "test_win.py::test_ntp_conf[winrm://172.31.253.136]": true
+}
