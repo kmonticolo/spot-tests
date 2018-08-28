@@ -100,3 +100,26 @@ describe group('Spot View Only') do
   it { should exist }
 end
 
+describe user('LocalScsetup') do
+  it { should exist }
+  it { should belong_to_group('Administrators')}
+  it { should belong_to_group('Spot Services')}
+end
+
+describe user('LocalSpotServices') do
+  it { should exist }
+  it { should belong_to_group('Administrators')}
+  it { should belong_to_group('Spot Services')}
+end
+
+describe user('LocalViewOnlyUser') do
+  it { should exist }
+  it { should belong_to_group('Administrators')}
+  it { should belong_to_group('Spot View Only')}
+end
+
+describe user('Administrator') do
+  it { should exist }
+  it { should belong_to_group('Administrators')}
+  it { should belong_to_group('Spot Administrators')}
+end
