@@ -27,6 +27,10 @@ describe port(80) do
   it { should be_listening }
 end
 
+describe port(1443) do
+  it { should be_listening }
+end
+
 describe service('Alarmcol') do
   it { should be_installed }
   #it { should be_enabled }
@@ -122,4 +126,13 @@ describe user('Administrator') do
   it { should exist }
   it { should belong_to_group('Administrators')}
   it { should belong_to_group('Spot Administrators')}
+end
+
+describe command('& "ntpq -pn"') do
+  #its(:stdout) { should match /.*192\.168\.160\.158.*/ }
+end
+
+describe file('C:\Program Files (x86)\NTP\etc\ntp.conf') do
+  it { should be_file }
+  it { should contain "server 192.168.160.158" }
 end
