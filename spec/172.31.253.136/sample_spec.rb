@@ -44,6 +44,10 @@ describe port(1433) do
 end
 end
 
+describe package('Microsoft SQL Server Management Studio - 17.4') do
+it { should be_installed } 
+end
+
 describe service('Alarmcol') do
   it { should be_installed }
   #it { should be_enabled }
