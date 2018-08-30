@@ -27,8 +27,21 @@ describe port(80) do
   it { should be_listening }
 end
 
+describe 'SQL Server 2016' do
+describe service('SQL Server (MSSQLSERVER)') do
+it { should be_installed }
+it { should be_enabled }
+it { should be_running }
+it { should have_start_mode('Automatic') }
+end
+
+describe package('Microsoft SQL Server 2016 (64-bit)') do
+it { should be_installed }
+end
+
 describe port(1433) do
-  it { should be_listening }
+	it { should be_listening.with('tcp') }
+end
 end
 
 describe service('Alarmcol') do
@@ -128,9 +141,9 @@ describe user('Administrator') do
   it { should belong_to_group('Spot Administrators')}
 end
 
-describe command('& "ntpq -pn"') do
+#describe command('& "C:\Program Files (x86)\NTP\bin\ntpq -pn"') do
   #its(:stdout) { should match /.*192\.168\.160\.158.*/ }
-end
+#end
 
 describe file('C:\Program Files (x86)\NTP\etc\ntp.conf') do
   it { should be_file }
