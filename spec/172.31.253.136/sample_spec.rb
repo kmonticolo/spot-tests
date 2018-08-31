@@ -23,6 +23,15 @@ describe service('org.apache.httpd'), :if => os[:family] == 'darwin' do
   it { should be_running }
 end
 
+describe file('C:\Program Files (x86)\NTP\etc\ntp.conf') do
+  it { should be_file }
+  it { should contain "server 192.168.160.158" }
+end
+
+describe command('ntpq -pn') do
+  its(:stdout) { should match /192\.168\.160\.158\ LOCAL/ }
+end
+
 describe port(80) do
   it { should be_listening }
 end
@@ -201,13 +210,4 @@ describe user('Administrator') do
   it { should exist }
   it { should belong_to_group('Administrators')}
   it { should belong_to_group('Spot Administrators')}
-end
-
-#describe command('& "C:\Program Files (x86)\NTP\bin\ntpq -pn"') do
-  #its(:stdout) { should match /.*192\.168\.160\.158.*/ }
-#end
-
-describe file('C:\Program Files (x86)\NTP\etc\ntp.conf') do
-  it { should be_file }
-  it { should contain "server 192.168.160.158" }
 end
