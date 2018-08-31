@@ -35,6 +35,34 @@ it { should be_running }
 it { should have_start_mode('Automatic') }
 end
 
+
+describe service('MSSQLFDLauncher') do
+  it { should be_installed }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('ReportServer') do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+describe service('SQL Server Distributed Replay Client') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('SQL Server Distributed Replay Controller') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
 describe package('Microsoft SQL Server 2016 (64-bit)') do
 it { should be_installed }
 end
