@@ -55,14 +55,16 @@ describe service('SeaChange Setup') do
   it { should have_start_mode("Automatic") }
 end
 
-describe service('Alarmcol') do
+# alarmcol
+describe service('Alarm Collector') do
   it { should be_installed }
   #it { should be_enabled }
   it { should be_running }
   it { should have_start_mode("Manual") }
 end
 
-describe service('Alarmana') do
+# alarmana
+describe service('Alarm Analyzer') do
   it { should be_installed }
   #it { should be_enabled }
   it { should be_running }
