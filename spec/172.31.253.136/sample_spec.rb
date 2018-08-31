@@ -97,6 +97,13 @@ describe service('tb') do
   it { should have_start_mode("Manual") }
 end
 
+describe service('SeaChange Infusion Spot+ Service') do
+  it { should be_installed }
+  it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
 
 describe package('Network Time Protocol') do
   it { should be_installed}
