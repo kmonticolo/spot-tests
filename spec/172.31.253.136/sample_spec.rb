@@ -23,22 +23,99 @@ describe service('org.apache.httpd'), :if => os[:family] == 'darwin' do
   it { should be_running }
 end
 
+describe file('C:\Program Files (x86)\NTP\etc\ntp.conf') do
+  it { should be_file }
+  it { should contain "server 192.168.160.158" }
+end
+
+describe command('ntpq -pn') do
+  its(:stdout) { should match /192\.168\.160\.158\ LOCAL/ }
+end
+
 describe port(80) do
   it { should be_listening }
 end
 
-describe port(1433) do
-  it { should be_listening }
+describe 'SQL Server 2016' do
+describe service('SQL Server (MSSQLSERVER)') do
+it { should be_installed }
+it { should be_enabled }
+it { should be_running }
+it { should have_start_mode('Automatic') }
 end
 
-describe service('Alarmcol') do
+
+describe service('MSSQLFDLauncher') do
+  it { should be_installed }
+  it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('ReportServer') do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+describe service('SQL Server Distributed Replay Client') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('SQL Server Distributed Replay Controller') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Manual") }
+end
+
+describe service('SQLTELEMETRY') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+describe service('SSASTELEMETRY') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+describe package('Microsoft SQL Server 2016 (64-bit)') do
+it { should be_installed }
+end
+
+describe port(1433) do
+	it { should be_listening.with('tcp') }
+end
+end
+
+describe package('Microsoft SQL Server Management Studio - 17.4') do
+it { should be_installed } 
+end
+
+describe service('SeaChange Setup') do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+# alarmcol
+describe service('Alarm Collector') do
   it { should be_installed }
   #it { should be_enabled }
   it { should be_running }
   it { should have_start_mode("Manual") }
 end
 
-describe service('Alarmana') do
+# alarmana
+describe service('Alarm Analyzer') do
   it { should be_installed }
   #it { should be_enabled }
   it { should be_running }
@@ -71,6 +148,13 @@ describe service('tb') do
   #it { should be_enabled }
   it { should be_running }
   it { should have_start_mode("Manual") }
+end
+
+describe service('SeaChange Infusion Spot+ Service') do
+  it { should be_installed }
+  it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Automatic") }
 end
 
 
@@ -126,13 +210,4 @@ describe user('Administrator') do
   it { should exist }
   it { should belong_to_group('Administrators')}
   it { should belong_to_group('Spot Administrators')}
-end
-
-describe command('& "ntpq -pn"') do
-  #its(:stdout) { should match /.*192\.168\.160\.158.*/ }
-end
-
-describe file('C:\Program Files (x86)\NTP\etc\ntp.conf') do
-  it { should be_file }
-  it { should contain "server 192.168.160.158" }
 end
