@@ -63,6 +63,20 @@ describe service('SQL Server Distributed Replay Controller') do
   it { should have_start_mode("Manual") }
 end
 
+describe service('SQLTELEMETRY') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
+describe service('SSASTELEMETRY') do
+  it { should be_installed }
+  #it { should be_enabled }
+  #it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
 describe package('Microsoft SQL Server 2016 (64-bit)') do
 it { should be_installed }
 end
