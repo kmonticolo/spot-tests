@@ -48,6 +48,13 @@ describe package('Microsoft SQL Server Management Studio - 17.4') do
 it { should be_installed } 
 end
 
+describe service('SeaChange Setup') do
+  it { should be_installed }
+  it { should be_enabled }
+  it { should be_running }
+  it { should have_start_mode("Automatic") }
+end
+
 describe service('Alarmcol') do
   it { should be_installed }
   #it { should be_enabled }
